@@ -539,27 +539,22 @@
                     password === CONFIG.DEMO.FACULTY.PASSWORD) {
                     Toast.show('✅ Faculty login successful!', 'success');
                     setTimeout(() => {
-                        Navigation.goto('pages/faculty-dashboard.html');
+                        Navigation.goto('pages/faculty_dashboard.html');
                     }, 1000);
                 } else {
                     Toast.show('❌ Invalid faculty credentials!', 'error');
                 }
             },
             
-            async loginStudent(username, password) {
-                console.log('👨‍🎓 Student login attempt:', username);
-                
-                // Demo mode authentication
-                if (username === CONFIG.DEMO.STUDENT.USERNAME && 
-                    password === CONFIG.DEMO.STUDENT.PASSWORD) {
-                    Toast.show('✅ Student login successful!', 'success');
-                    setTimeout(() => {
-                        Navigation.goto('pages/student-dashboard.html');
-                    }, 1000);
-                } else {
-                    Toast.show('❌ Invalid student credentials!', 'error');
-                }
-            }
+           async loginStudent(username, password) {
+    console.log('👨‍🎓 Student login attempt:', username);
+
+    Toast.show(
+        '⚠️ Student dashboard is not available in this version',
+        'error'
+    );
+}
+
         };
 
         // Initialize on page load

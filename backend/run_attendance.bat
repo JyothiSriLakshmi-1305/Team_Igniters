@@ -1,3 +1,3 @@
 @echo off
-cd /d "D:\Smart Ai Attendence New - Copy\backend"
+cd /d "D:\Smart-AI-Attendace\backend"
 python recognize_attendance.py AIML A

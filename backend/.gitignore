@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data Files
+student_database.json
+attendance.csv
+*.csv
+dataset/
+trainer/
+backups/
+logs/
+
+# System Files
+.DS_Store
+Thumbs.db
+*.log
+
+# Batch files
+run_attendance.bat
