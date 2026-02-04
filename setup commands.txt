@@ -1,0 +1,64 @@
+#if it shows python 3.13
+
+deactivate
+rmdir /s /q venv
+
+works on python 3.10 only
+py -3.10 -m venv venv
+
+venv\Scripts\activate
+python --version
+Python 3.10.x
+
+pip uninstall numpy opencv-contrib-python -y
+pip install numpy==1.26.4
+pip install opencv-contrib-python==4.8.1.78
+
+⚠️ If pip again tries to install NumPy 2.x, don’t worry — Step 4 locks it.
+🟢 STEP 4: VERIFY NUMPY VERSION (MANDATORY CHECK)
+python -c "import numpy; print(numpy.__version__)"
+✅ MUST output:
+
+1.26.4
+
+pip install flask
+pip install flask-cors
+🔍 VERIFY FLASK INSTALLATION
+Run:
+python -c "import flask; print(flask.__version__)"
+You should see something like:
+3.0.0
+
+pip install --upgrade pip setuptools wheel
+ #if need python.exe -m pip install --upgrade pip setuptools wheel
+
+pip install -r requirements.txt
+
+#pip install opencv-contrib-python==4.8.1.78
+
+to verify->
+
+python -c "import cv2; print(hasattr(cv2, 'face'))"
+
+
+ if error 
+python -m pip install --upgrade pip setuptools wheel
+
+python face_capture.py
+
+python train_model.py
+python recognize_attendance.py AIM A
+
+render link
+1. Team Name - Igniters⚡
+2. Team Leader Name -Jyothi Sri Lakshmi Kuna
+3. Team Leader Email Address - jyothikuna02@gmail.com
+4. Team Size -3
+5. List down the google technologies that was used in the project - Google Cloud Platform, Google Gemini API, Google Chrome (testing), Google Drive (demo video and documentation),Google code Assistant 
+6. Problem Statement - MANUAL ATTENDENCE IS TIME CONSUMING
+ PROXY ATTENDENCE IS POSSIBLE
+• FACULTY TIME AND CLASS TIME ARE WASTE
+7. Description of the Solution -  A face recognition system that automates attendance without disrupting classroom teaching. MARKS ATTENDENCE WITHOUT MANUAL INTERVENTION
+8. video link : https://drive.google.com/file/d/1iKerFVFV4c8THgXR_oSZnNjUSuyznZYe/view?usp=drive_link
+9.GitHub Link - https://github.com/JyothiSriLakshmi-1305/Team_Igniters
+10 MVP link : https://smart-ai-attendance.onrender.com/

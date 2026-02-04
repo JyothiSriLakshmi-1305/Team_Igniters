@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System - Sri Vasavi Engineering College</title>
+    
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #d4e4f7;
+            min-height: 100vh; 
+            color: #333; 
+        }
+        
+        /* Professional College Header Banner */
+        .college-header {
+            background: white;
+            padding: 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+            border-bottom: 4px solid #0066cc;
+            position: relative;
+        }
+        
+        .college-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://tse2.mm.bing.net/th/id/OIP.6ovpqbKMeQO3k-48Le01IAHaEU?pid=Api&P=0&h=180') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .header-banner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Left Logo */
+        .header-logo {
+            flex-shrink: 0;
+        }
+        
+        .header-logo img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+        }
+        
+        .header-logo img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+        }
+        
+        /* Center Content */
+        .header-center {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .header-top-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 5px;
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .estd {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .counselling {
+            color: #0066cc;
+            font-weight: bold;
+        }
+        
+        .college-name {
+            font-size: 1.8em;
+            color: #006633;
+            font-weight: bold;
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
+        
+        .autonomous {
+            color: #e74c3c;
+            font-size: 0.8em;
+        }
+        
+        .sponsored {
+            font-size: 0.9em;
+            color: #333;
+            margin: 5px 0;
+        }
+        
+        .sponsored a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .address {
+            font-size: 0.85em;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        /* Page Title */
+        .page-title { 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+            color: white; 
+            text-align: center; 
+            padding: 12px; 
+            font-size: 1.2em; 
+            font-weight: 600; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+        
+        /* Container */
+        .container { 
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 20px; 
+        }
+        
+        /* Login Cards */
+        .login-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+        
+        .login-card { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3); 
+            border: 2px solid #e0e0e0; 
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .login-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-header { 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+        }
+        
+        .login-header h2 { 
+            font-size: 1.6em; 
+            margin-top: 10px; 
+            font-weight: 600; 
+        }
+        
+        .login-icon { 
+            width: 70px; 
+            height: 70px; 
+            margin: 0 auto 10px; 
+            background: rgba(255,255,255,0.2); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2.2em; 
+        }
+        
+        .login-body { 
+            padding: 35px 30px; 
+            background: #fafafa; 
+        }
+        
+        /* Form */
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        
+        .form-group label { 
+            display: block; 
+            color: #2c3e50; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            font-size: 0.95em;
+        }
+        
+        .form-control { 
+            width: 100%; 
+            padding: 12px 15px; 
+            border: 2px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 15px; 
+            transition: all 0.3s; 
+            background: white; 
+        }
+        
+        .form-control:focus { 
+            outline: none; 
+            border-color: #3498db; 
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1); 
+        }
+        
+        /* Button */
+        .btn { 
+            padding: 14px 30px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3); 
+        }
+        
+        .btn-login { 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+            color: white; 
+            width: 100%; 
+        }
+        
+        .btn-login:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+        }
+        
+        /* Toast */
+        .toast { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            background: #2c3e50; 
+            color: white; 
+            padding: 15px 25px; 
+            border-radius: 8px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+            transform: translateY(100px); 
+            opacity: 0; 
+            transition: all 0.3s ease; 
+            z-index: 1000; 
+            font-weight: 500;
+            max-width: 350px;
+        }
+        
+        .toast.show { 
+            transform: translateY(0); 
+            opacity: 1; 
+        }
+        
+        .toast.success { 
+            background: #27ae60; 
+        }
+        
+        .toast.error { 
+            background: #e74c3c; 
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-top-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .college-name {
+                font-size: 1.5em;
+            }
+        }
+        
+        @media (max-width: 768px) { 
+            .header-logo img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .college-name {
+                font-size: 1.3em;
+            }
+            
+            .login-container { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            
+            .page-title {
+                font-size: 1em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .college-header {
+                padding: 10px;
+            }
+            
+            .header-logo img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .college-name {
+                font-size: 1.1em;
+            }
+            
+            .login-body {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Professional College Header Banner -->
+    <div class="college-header">
+        <div class="header-banner">
+            <!-- Left Logo -->
+            <div class="header-logo">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.sxJEIIohO5to28ssExKhvwAAAA?pid=Api&P=0&h=180" 
+                     alt="Sri Vasavi Engineering College Logo">
+            </div>
+            
+            <!-- Center Content -->
+            <div class="header-center">
+                <div class="header-top-info">
+                    <span class="estd">ESTD: 2001</span>
+                    <span class="counselling">COUNSELLING CODE: VSVT</span>
+                </div>
+                <h1 class="college-name">
+                    SRI VASAVI ENGINEERING COLLEGE 
+                    <span class="autonomous">(AUTONOMOUS)</span>
+                </h1>
+                <p class="sponsored">
+                    Sponsored by: <span style="color: #e74c3c;">SRI VASAVI EDUCATIONAL SOCIETY</span>, 
+                    website: <a href="http://www.srivasaviengg.ac.in" target="_blank">www.srivasaviengg.ac.in</a>
+                </p>
+                <p class="address">Pedatadepalli, Tadepalligudem – 534 101, W.G.Dist, (A.P.)</p>
+            </div>
+            
+            <!-- Right Logo -->
+            <div class="header-logo">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.6ovpqbKMeQO3k-48Le01IAHaEU?pid=Api&P=0&h=180" 
+                     alt="Right Logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Title Bar -->
+    <div class="page-title">
+        SMART ATTENDANCE MANAGEMENT SYSTEM - LOGIN
+    </div>
+
+    <!-- Login Cards Container -->
+    <div class="container">
+        <div class="login-container">
+            
+            <!-- Faculty Login Card -->
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-icon">👨‍🏫</div>
+                    <h2>Faculty Login</h2>
+                </div>
+                <div class="login-body">
+                    <form id="facultyLoginForm">
+                        <div class="form-group">
+                            <label for="facultyUsername">Username</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="facultyUsername" 
+                                   placeholder="Enter your username"
+                                   value="faculty"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="facultyPassword">Password</label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="facultyPassword" 
+                                   placeholder="Enter your password"
+                                   value="1234"
+                                   required>
+                        </div>
+                        <button type="submit" class="btn btn-login">LOGIN</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Student Login Card -->
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-icon">👨‍🎓</div>
+                    <h2>Student Login</h2>
+                </div>
+                <div class="login-body">
+                    <form id="studentLoginForm">
+                        <div class="form-group">
+                            <label for="studentUsername">Username</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="studentUsername" 
+                                   placeholder="Enter your username"
+                                   value="student"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentPassword">Password</label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="studentPassword" 
+                                   placeholder="Enter your password"
+                                   value="1234"
+                                   required>
+                        </div>
+                        <button type="submit" class="btn btn-login">LOGIN</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Configuration
+        const CONFIG = {
+            API: {
+                BASE_URL: 'http://localhost:5000',
+                ENDPOINTS: {
+                    LOGIN: '/api/login'
+                }
+            },
+            DEMO: {
+                FACULTY: { USERNAME: 'faculty', PASSWORD: '1234' },
+                STUDENT: { USERNAME: 'student', PASSWORD: '1234' }
+            }
+        };
+
+        // Toast Notification System
+        const Toast = {
+            element: null,
+            init() {
+                this.element = document.getElementById('toast');
+            },
+            show(message, type = 'success') {
+                if (!this.element) this.init();
+                this.element.textContent = message;
+                this.element.className = `toast show ${type}`;
+                setTimeout(() => {
+                    this.element.classList.remove('show');
+                }, 3000);
+            }
+        };
+
+        // Navigation Helper
+        const Navigation = {
+            goto(url) {
+                console.log(`🔄 Navigate to: ${url}`);
+                window.location.href = url;
+            }
+        };
+
+        // Authentication System
+        const Auth = {
+            init() {
+                console.log('🔐 Smart Attendance System Initialized');
+                console.log('🎓 Sri Vasavi Engineering College');
+                Toast.init();
+                
+                // Faculty Login Handler
+                const facultyForm = document.getElementById('facultyLoginForm');
+                if (facultyForm) {
+                    facultyForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const username = document.getElementById('facultyUsername').value;
+                        const password = document.getElementById('facultyPassword').value;
+                        await this.loginFaculty(username, password);
+                    });
+                }
+                
+                // Student Login Handler
+                const studentForm = document.getElementById('studentLoginForm');
+                if (studentForm) {
+                    studentForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const username = document.getElementById('studentUsername').value;
+                        const password = document.getElementById('studentPassword').value;
+                        await this.loginStudent(username, password);
+                    });
+                }
+            },
+            
+            async loginFaculty(username, password) {
+                console.log('👨‍🏫 Faculty login attempt:', username);
+                
+                // Demo mode authentication
+                if (username === CONFIG.DEMO.FACULTY.USERNAME && 
+                    password === CONFIG.DEMO.FACULTY.PASSWORD) {
+                    Toast.show('✅ Faculty login successful!', 'success');
+                    setTimeout(() => {
+                        Navigation.goto('pages/faculty_dashboard.html');
+                    }, 1000);
+                } else {
+                    Toast.show('❌ Invalid faculty credentials!', 'error');
+                }
+            },
+            
+           async loginStudent(username, password) {
+    console.log('👨‍🎓 Student login attempt:', username);
+
+    Toast.show(
+        '⚠️ Student dashboard is not available in this version',
+        'error'
+    );
+}
+
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            Auth.init();
+            console.log('Demo credentials:');
+            console.log('  Faculty: faculty / 1234');
+            console.log('  Student: student / 1234');
+        });
+    </script>
+
+</body>
+</html>

@@ -5,25 +5,7 @@
         "branch": "AIML",
         "section": "A",
         "imagesCount": 50,
-        "registeredDate": "2025-12-28 17:27:03",
+        "registeredDate": "2026-02-03 06:48:07",
         "datasetPath": "D:\\Smart-AI-Attendace\\backend\\dataset\\Jyothi"
-    },
-    "jothi": {
-        "name": "Jothi",
-        "rollNo": "23A81A5411",
-        "branch": "AIML",
-        "section": "A",
-        "imagesCount": 50,
-        "registeredDate": "2025-12-28 17:41:03",
-        "datasetPath": "D:\\Smart-AI-Attendace\\backend\\dataset\\Jothi"
-    },
-    "jyothi_sri": {
-        "name": "Jyothi SRI",
-        "rollNo": "23A81A6150",
-        "branch": "AIML",
-        "section": "A",
-        "imagesCount": 50,
-        "registeredDate": "2026-02-01 18:10:17",
-        "datasetPath": "D:\\Smart-AI-Attendace\\backend\\dataset\\Jyothi SRI"
     }
 }

@@ -3,7 +3,7 @@ Smart Attendance System - Flask Backend API
 Complete API with duplicate prevention and accurate attendance
 """
 
-from flask import Flask, jsonify, send_file, request
+from flask import Flask, jsonify, send_file, request, render_template
 from flask_cors import CORS
 import csv
 import os
@@ -16,6 +16,9 @@ from config import Config
 from validators import StudentValidator, AttendanceValidator, ValidationError
 
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return render_template("index.html")
 CORS(app)
 
 # Global variable to track attendance status
@@ -94,7 +97,7 @@ def cleanup_old_backups():
 
 
 @app.route("/")
-def home():
+def api_home():
     """API health check"""
     db = load_student_database()
     
